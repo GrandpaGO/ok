@@ -517,8 +517,8 @@
         </div><span id="veg-number" class="text-elder font-bold text-green-600">0/10</span>
        </div>
        <div id="reward-hint" class="mt-4 hidden bg-yellow-100 border-2 border-yellow-400 rounded-xl p-4">
-        <p class="text-elder font-bold text-yellow-700">🎉 恭喜！已集滿10種蔬菜</p>
-        <p class="text-elder text-yellow-600">可至鄰近蔬菜行兌換蔬菜一包</p>
+        <p class="text-elder font-bold text-yellow-700">🎉 恭喜！已收成10根白蘿蔔</p>
+        <p class="text-elder text-yellow-600">可至鄰近蔬菜行兌換白蘿蔔獎勵</p>
        </div>
       </div>
      </div>
@@ -3312,19 +3312,11 @@ window.showParkSelect = function () {
   const saveUser = (u)=>{ const k=userKey(); if(k) localStorage.setItem(k, JSON.stringify(u)); };
 
   GGX.vegPool = [
-    {name:"蘿蔔", icon:"🥕", rarity:"普通"},
-    {name:"高麗菜", icon:"🥬", rarity:"普通"},
-    {name:"玉米", icon:"🌽", rarity:"普通"},
-    {name:"茄子", icon:"🍆", rarity:"普通"},
-    {name:"小黃瓜", icon:"🥒", rarity:"普通"},
-    {name:"馬鈴薯", icon:"🥔", rarity:"普通"},
-    {name:"南瓜", icon:"🎃", rarity:"普通"},
-    {name:"花椰菜", icon:"🥦", rarity:"普通"},
-    {name:"黃金番茄", icon:"🍅✨", rarity:"黃金", chance:0.05},
-    {name:"鑽石蘿蔔", icon:"🥕💎", rarity:"鑽石", chance:0.01},
+    {name:"白蘿蔔", icon:"🥕", rarity:"固定"},
   ];
   GGX.parkSeeds = {
-    "復興公園":"復興青蔥","元生公園":"元生玉米","文化公園":"文化番茄","常樂公園":"常樂白菜","成功公園":"成功高麗菜","中正公園":"中正南瓜"
+    "復興公園":"復興白蘿蔔","元生公園":"元生白蘿蔔","文化公園":"文化白蘿蔔","常樂公園":"常樂白蘿蔔","成功公園":"成功白蘿蔔","中正公園":"中正白蘿蔔",
+    "中壢藝術園區":"中壢白蘿蔔","龍岡森林公園":"龍岡白蘿蔔","光明公園":"光明白蘿蔔","夢幻公園":"夢幻白蘿蔔"
   };
   GGX.parkCoords = {
     "復興公園":[24.97430737812043,121.24846509148746],
@@ -3335,6 +3327,7 @@ window.showParkSelect = function () {
     "中壢藝術園區":[24.973134345561746,121.2331776775459],
     "龍岡森林公園":[24.934199843085448,121.23581136752513],
     "光明公園":[24.963638128535816,121.21605943684051],
+    "文化公園":[24.98020573977442,121.24919121349276],
     "夢幻公園":[24.978041418783775,121.26053919991263],
     "中壢文化園區":[24.973134345561746,121.2331776775459],
     "夢想公園":[24.978041418783775,121.26053919991263]
@@ -3430,10 +3423,8 @@ window.showParkSelect = function () {
     const c=u.creative;
     const hc=(u.harvested||[]).length;
     if(hc>c.lastHarvestCount){
-      // Replace newly added default radish with our randomized vegetable
       for(let i=c.lastHarvestCount;i<hc;i++){
-        const v = rollVeg(u);
-        u.harvested[i] = v.name;
+        u.harvested[i] = '白蘿蔔';
       }
       celebrate();
     }
@@ -3442,13 +3433,7 @@ window.showParkSelect = function () {
   }
 
   function rollVeg(u){
-    const weather = u.creative?.weather?.type;
-    const boost = weather==='rainbow' ? 0.03 : 0;
-    const x = Math.random();
-    if(x < 0.01 + boost) return GGX.vegPool.find(v=>v.rarity==='鑽石');
-    if(x < 0.06 + boost) return GGX.vegPool.find(v=>v.rarity==='黃金');
-    const commons = GGX.vegPool.filter(v=>v.rarity==='普通');
-    return rand(commons);
+    return GGX.vegPool[0];
   }
 
   function toast(msg){
@@ -3456,11 +3441,25 @@ window.showParkSelect = function () {
     else console.log(msg);
   }
 
+  function celebrateGrowth(){
+    const ov = $('gg-celebrate-overlay'); if(!ov) return;
+    ov.innerHTML = '<div class="gg-center">🌱 成長 +15%</div>';
+    for(let i=0;i<20;i++){
+      const s=document.createElement('div'); s.className='gg-confetti'; s.textContent=rand(['🌱','✨','🍃','💚']);
+      s.style.left = (Math.random()*100)+'vw';
+      s.style.animationDelay = (Math.random()*0.35)+'s';
+      s.style.fontSize = (1.2+Math.random()*1.4)+'rem';
+      ov.appendChild(s);
+    }
+    ov.classList.add('show');
+    setTimeout(()=>{ov.classList.remove('show'); ov.innerHTML='<div class="gg-center">🎉</div>';},1200);
+  }
+
   function celebrate(){
     const ov = $('gg-celebrate-overlay'); if(!ov) return;
     ov.innerHTML = '<div class="gg-center">🌟 收穫！</div>';
     for(let i=0;i<22;i++){
-      const s=document.createElement('div'); s.className='gg-confetti'; s.textContent=rand(['🎉','✨','🥬','🥕','🌽']);
+      const s=document.createElement('div'); s.className='gg-confetti'; s.textContent=rand(['🎉','✨','🥕']);
       s.style.left = (Math.random()*100)+'vw';
       s.style.animationDelay = (Math.random()*0.4)+'s';
       s.style.fontSize = (1.2+Math.random()*1.6)+'rem';
@@ -3601,7 +3600,7 @@ window.showParkSelect = function () {
     const pools = {
       purple: [
         {label:'直接收穫衝刺 +35%', fn:()=>grow(u,35)},
-        {label:'稀有黃金蔬菜', fn:()=>{u.harvested=u.harvested||[]; u.harvested.push('黃金番茄'); celebrate();}},
+        {label:'白蘿蔔收穫 +1', fn:()=>{u.harvested=u.harvested||[]; u.harvested.push('白蘿蔔'); celebrate();}},
         {label:'雙倍成長卡（本日）', fn:()=>{u.creative.doubleGrowthToday=TODAY();}}
       ],
       green: [
@@ -3650,10 +3649,8 @@ window.showParkSelect = function () {
       let icon = '🥕';
       const v = GGX.vegPool.find(x=>x.name===name);
       if(v) icon = v.icon;
-      else if(name.includes('高麗菜')) icon='🥬';
-      else if(name.includes('番茄')) icon='🍅';
-      else if(name.includes('南瓜')) icon='🎃';
-      else if(name.includes('玉米')) icon='🌽';
+      
+      
       const s=document.createElement('span'); s.textContent=icon; wrap.appendChild(s);
     });
     if(num) num.textContent=`${harvested.length}/10`;
@@ -3709,10 +3706,9 @@ window.showParkSelect = function () {
 
     const success = ()=> {
       c.checkins.parks.push(parkName);
-      u.harvested = u.harvested || [];
-      u.harvested.push(rewardName);
-      toast(`🌳 打卡成功！獲得「${rewardName}」`);
-      celebrate();
+      grow(u, 15);
+      toast(`🌳 打卡成功！菜苗成長 +15%`);
+      celebrateGrowth();
       saveUser(u); syncVisuals();
     };
 
@@ -3789,7 +3785,7 @@ window.showParkSelect = function () {
       if(score===3){
         grow(u,12);
         u.harvested = u.harvested || [];
-        if(Math.random()<0.2) u.harvested.push('黃金番茄');
+        if(Math.random()<0.2) u.harvested.push('白蘿蔔');
         toast('🏆 全對！額外成長 +12%');
       } else {
         grow(u, Math.max(3, score*3));
