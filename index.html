@@ -3182,57 +3182,110 @@ window.showParkSelect = function () {
   .gg-qopt.wrong{border-color:#dc2626;background:#fef2f2}
 
   #gg-header-box-btn[disabled]{opacity:.55;pointer-events:none}
-  .gg-chest-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;display:none;align-items:center;justify-content:center;padding:1rem}
-  .gg-chest-overlay.show{display:flex}
-  .gg-chest-panel{width:min(96vw,820px);height:min(90vh,640px);background:linear-gradient(180deg,#111827,#1f2937);border-radius:1.25rem;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.45);border:3px solid rgba(255,255,255,.12)}
-  .gg-chest-door-wrap{position:absolute;inset:0;display:flex}
-  .gg-door{width:50%;height:100%;background:linear-gradient(180deg,#7c4a20,#5b3417);border-right:2px solid rgba(0,0,0,.35);position:relative;transition:transform .95s cubic-bezier(.22,.8,.2,1)}
-  .gg-door.right{border-right:none;border-left:2px solid rgba(0,0,0,.35)}
-  .gg-door:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 12px,rgba(0,0,0,.03) 12px 24px)}
-  .gg-door:after{content:'🚪';position:absolute;top:50%;font-size:3rem;transform:translateY(-50%);opacity:.65}
-  .gg-door.left:after{right:1.1rem}
-  .gg-door.right:after{left:1.1rem}
-  .gg-chest-overlay.opening .gg-door.left{transform:translateX(-102%)}
-  .gg-chest-overlay.opening .gg-door.right{transform:translateX(102%)}
-  .gg-chest-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1rem;opacity:0;transition:opacity .35s ease .75s}
-  .gg-chest-overlay.opening .gg-chest-content,
-  .gg-chest-overlay.ready .gg-chest-content{opacity:1}
-  .gg-chest-title{color:#fff;font-weight:800;font-size:2rem;text-align:center;text-shadow:0 4px 12px rgba(0,0,0,.35)}
-  .gg-chest-sub{color:#d1d5db;margin-top:.35rem;font-size:1rem;text-align:center}
-  .gg-chest-list{margin-top:1.25rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem;width:100%;max-width:680px}
-  .gg-color-chest{border:none;border-radius:1rem;padding:1rem .75rem;min-height:9rem;font-weight:800;color:#fff;box-shadow:0 12px 22px rgba(0,0,0,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;transition:transform .15s ease,filter .15s ease}
-  .gg-color-chest:active{transform:scale(.97);filter:brightness(1.08)}
-  .gg-color-chest .icon{font-size:3rem}
-  .gg-color-chest .label{font-size:1.1rem}
-  .gg-color-chest.purple{background:linear-gradient(135deg,#9333ea,#6d28d9)}
-  .gg-color-chest.green{background:linear-gradient(135deg,#22c55e,#15803d)}
-  .gg-color-chest.yellow{background:linear-gradient(135deg,#f59e0b,#ca8a04)}
-  .gg-chest-close{position:absolute;top:.75rem;right:.75rem;background:rgba(255,255,255,.16);color:#fff;border:none;border-radius:.75rem;padding:.55rem .8rem;font-weight:700}
-  .gg-chest-result{margin-top:1rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#fff;padding:.85rem 1rem;border-radius:.9rem;max-width:680px;width:100%;text-align:center}
+  .gg-chest-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,226,138,.16),rgba(0,0,0,.84) 55%),rgba(0,0,0,.82);backdrop-filter:blur(2px);z-index:10000;display:none;align-items:center;justify-content:center;padding:.6rem}
+  .gg-chest-overlay.show{display:flex;animation:ggChestFade .28s ease}
+  @keyframes ggChestFade{from{opacity:0}to{opacity:1}}
+  .gg-chest-panel{width:min(98vw,1100px);height:min(95vh,760px);background:radial-gradient(circle at 50% 20%,#2d2348 0%,#161328 45%,#090b14 100%);border-radius:1.4rem;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.62), inset 0 0 0 1px rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.08)}
+  .gg-chest-panel:before,.gg-chest-panel:after{content:'';position:absolute;inset:auto;width:46vmin;height:46vmin;border-radius:999px;filter:blur(35px);opacity:.22;pointer-events:none}
+  .gg-chest-panel:before{left:-8%;top:-10%;background:#8b5cf6}
+  .gg-chest-panel:after{right:-8%;bottom:-18%;background:#22c55e}
+  .gg-chest-door-wrap{position:absolute;inset:0;display:flex;z-index:3;pointer-events:none;perspective:1200px}
+  .gg-door{width:50%;height:100%;position:relative;transition:transform 1s cubic-bezier(.12,.82,.18,1),filter .4s ease;transform-origin:center}
+  .gg-door.left{transform-origin:left center}
+  .gg-door.right{transform-origin:right center}
+  .gg-door .wood{position:absolute;inset:0;background:linear-gradient(180deg,#6b3d1c 0%,#5a3216 34%,#48270f 100%)}
+  .gg-door .wood:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 10px,rgba(0,0,0,.05) 10px 20px)}
+  .gg-door .frame{position:absolute;inset:2.3vmin;border:1.2vmin solid #c99432;border-radius:1rem;box-shadow:inset 0 0 0 2px rgba(255,233,170,.25)}
+  .gg-door .cross{position:absolute;left:50%;top:50%;width:80%;height:80%;transform:translate(-50%,-50%)}
+  .gg-door .cross:before,.gg-door .cross:after{content:'';position:absolute;background:#d5a23f;opacity:.92}
+  .gg-door .cross:before{left:50%;top:0;transform:translateX(-50%);width:1vmin;height:100%}
+  .gg-door .cross:after{top:50%;left:0;transform:translateY(-50%);height:1vmin;width:100%}
+  .gg-door .knob{position:absolute;top:50%;width:1.2rem;height:1.2rem;border-radius:999px;background:radial-gradient(circle at 35% 35%,#fff7c7,#d59a2f 55%,#9f6a19);box-shadow:0 0 0 2px rgba(0,0,0,.16),0 0 18px rgba(255,191,71,.25)}
+  .gg-door.left .knob{right:1rem;transform:translateY(-50%)}
+  .gg-door.right .knob{left:1rem;transform:translateY(-50%)}
+  .gg-chest-overlay.opening .gg-door.left{transform:translateX(-104%) rotateY(20deg);filter:brightness(.9)}
+  .gg-chest-overlay.opening .gg-door.right{transform:translateX(104%) rotateY(-20deg);filter:brightness(.9)}
+  .gg-chest-rays{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s ease .35s}
+  .gg-chest-rays:before{content:'';position:absolute;left:50%;top:50%;width:120vmax;height:120vmax;transform:translate(-50%,-50%) rotate(0deg);background:conic-gradient(from 0deg,rgba(255,255,255,0) 0 8deg,rgba(255,215,96,.09) 8deg 16deg,rgba(255,255,255,0) 16deg 28deg,rgba(147,51,234,.08) 28deg 34deg,rgba(255,255,255,0) 34deg 45deg);animation:ggRaySpin 18s linear infinite}
+  .gg-chest-rays:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,214,120,.18),rgba(255,255,255,0) 58%)}
+  @keyframes ggRaySpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .gg-chest-overlay.opening .gg-chest-rays,.gg-chest-overlay.ready .gg-chest-rays{opacity:1}
+  .gg-chest-sparkles{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .4s ease .55s}
+  .gg-chest-sparkles i{position:absolute;font-style:normal;color:#fde68a;filter:drop-shadow(0 0 8px rgba(253,230,138,.45));animation:ggFloatSpark 2.6s ease-in-out infinite}
+  .gg-chest-sparkles i:nth-child(1){left:12%;top:22%;font-size:1.2rem;animation-delay:.1s}
+  .gg-chest-sparkles i:nth-child(2){left:84%;top:18%;font-size:1.5rem;animation-delay:.5s}
+  .gg-chest-sparkles i:nth-child(3){left:20%;top:72%;font-size:1rem;animation-delay:.9s}
+  .gg-chest-sparkles i:nth-child(4){left:74%;top:76%;font-size:1.35rem;animation-delay:1.2s}
+  .gg-chest-sparkles i:nth-child(5){left:48%;top:14%;font-size:1.1rem;animation-delay:1.6s}
+  .gg-chest-sparkles i:nth-child(6){left:51%;top:81%;font-size:1.3rem;animation-delay:2s}
+  @keyframes ggFloatSpark{0%,100%{transform:translateY(0) scale(1);opacity:.55}50%{transform:translateY(-8px) scale(1.12);opacity:1}}
+  .gg-chest-overlay.opening .gg-chest-sparkles,.gg-chest-overlay.ready .gg-chest-sparkles{opacity:1}
+  .gg-chest-content{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1.2rem;opacity:0;transition:opacity .45s ease .7s}
+  .gg-chest-overlay.opening .gg-chest-content,.gg-chest-overlay.ready .gg-chest-content{opacity:1}
+  .gg-chest-title{color:#fff;font-weight:900;font-size:2.15rem;letter-spacing:.02em;text-align:center;text-shadow:0 6px 24px rgba(0,0,0,.48)}
+  .gg-chest-sub{color:#d6dcf3;margin-top:.35rem;font-size:1rem;text-align:center}
+  .gg-chest-list{margin-top:1.1rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;width:100%;max-width:860px}
+  .gg-color-chest{position:relative;border:none;border-radius:1.1rem;min-height:12.2rem;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));box-shadow:0 18px 35px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.08);display:flex;align-items:flex-end;justify-content:center;padding:.7rem .7rem .85rem;cursor:pointer;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;overflow:hidden}
+  .gg-color-chest:hover{transform:translateY(-3px) scale(1.015);filter:brightness(1.05);box-shadow:0 24px 42px rgba(0,0,0,.35),0 0 30px rgba(255,215,96,.08)}
+  .gg-color-chest:active{transform:translateY(-1px) scale(.985)}
+  .gg-color-chest .label{position:relative;z-index:2;font-size:1rem;font-weight:800;color:#f8fafc;background:rgba(15,23,42,.55);padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+  .gg-color-chest .icon{display:none}
+  .gg-color-chest .slot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:1}
+  .gg-color-chest .chest3d{position:relative;width:80%;max-width:200px;aspect-ratio:1.18/1;transform:translateY(-2px)}
+  .gg-color-chest .chest3d .front-base{position:absolute;left:7%;right:18%;bottom:8%;height:46%;border-radius:0 0 12px 12px;background:linear-gradient(180deg,var(--wood1),var(--wood2));box-shadow:inset 0 -8px 12px rgba(0,0,0,.18)}
+  .gg-color-chest .chest3d .front-lid{position:absolute;left:7%;right:18%;top:7%;height:34%;border-radius:44px 44px 14px 14px / 34px 34px 12px 12px;background:linear-gradient(180deg,var(--woodTop1),var(--woodTop2));box-shadow:inset 0 -8px 12px rgba(0,0,0,.14)}
+  .gg-color-chest .chest3d .side-base{position:absolute;right:6%;bottom:11%;width:13%;height:41%;transform:skewY(-18deg);border-radius:0 10px 10px 0;background:linear-gradient(180deg,var(--woodSide1),var(--woodSide2))}
+  .gg-color-chest .chest3d .side-lid{position:absolute;right:6%;top:12%;width:13%;height:28%;transform:skewY(-18deg);border-radius:0 20px 10px 0;background:linear-gradient(180deg,var(--woodSideTop1),var(--woodSideTop2))}
+  .gg-color-chest .chest3d .trim1,.gg-color-chest .chest3d .trim2,.gg-color-chest .chest3d .trim3,.gg-color-chest .chest3d .trim4,.gg-color-chest .chest3d .trim5{position:absolute;background:linear-gradient(180deg,var(--metal1),var(--metal2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+  .gg-color-chest .chest3d .trim1{left:5%;right:17%;top:38%;height:9%;border-radius:7px}
+  .gg-color-chest .chest3d .trim2{left:16%;top:6%;width:8%;height:80%;border-radius:7px}
+  .gg-color-chest .chest3d .trim3{left:41%;top:4%;width:8%;height:82%;border-radius:7px}
+  .gg-color-chest .chest3d .trim4{left:66%;top:4%;width:8%;height:82%;border-radius:7px}
+  .gg-color-chest .chest3d .trim5{right:5%;top:9%;width:10%;height:74%;transform:skewY(-18deg);border-radius:0 8px 8px 0}
+  .gg-color-chest .chest3d .lock{position:absolute;left:39%;top:44%;width:20%;height:17%;background:linear-gradient(180deg,var(--metal1),var(--metal2));clip-path:polygon(10% 10%,90% 10%,85% 85%,50% 100%,15% 85%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+  .gg-color-chest .chest3d .keyhole{position:absolute;left:48%;top:49%;width:4%;height:5%;background:#3a2a10;border-radius:2px}
+  .gg-color-chest .chest3d .rivet{position:absolute;width:4.6%;aspect-ratio:1;border-radius:999px;background:radial-gradient(circle at 35% 30%,#fff9d0,var(--metal1) 38%,var(--metal2) 75%);box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+  .gg-color-chest .chest3d .r1{left:14%;top:13%}.gg-color-chest .chest3d .r2{left:39%;top:11%}.gg-color-chest .chest3d .r3{left:64%;top:11%}.gg-color-chest .chest3d .r4{left:12%;top:40%}.gg-color-chest .chest3d .r5{left:36%;top:40%}.gg-color-chest .chest3d .r6{left:61%;top:40%}.gg-color-chest .chest3d .r7{left:13%;top:74%}.gg-color-chest .chest3d .r8{left:37%;top:74%}.gg-color-chest .chest3d .r9{left:61%;top:74%}.gg-color-chest .chest3d .r10{left:80%;top:17%}.gg-color-chest .chest3d .r11{left:80%;top:44%}.gg-color-chest .chest3d .r12{left:80%;top:70%}
+  .gg-color-chest .shine{position:absolute;inset:-35% 45% auto -5%;height:80%;background:linear-gradient(110deg,rgba(255,255,255,.0),rgba(255,255,255,.18),rgba(255,255,255,.0));transform:rotate(2deg);pointer-events:none}
+  .gg-color-chest:hover .shine{animation:ggChestShine .9s ease}
+  @keyframes ggChestShine{from{transform:translateX(-40%) rotate(2deg)}to{transform:translateX(120%) rotate(2deg)}}
+  .gg-color-chest.purple{--wood1:#7f4ad7;--wood2:#512596;--woodTop1:#9f67ff;--woodTop2:#6b31c8;--woodSide1:#6e39c7;--woodSide2:#431f83;--woodSideTop1:#9866f4;--woodSideTop2:#622ab8;--metal1:#f6d474;--metal2:#bd7f24}
+  .gg-color-chest.green{--wood1:#2bbf6f;--wood2:#157d47;--woodTop1:#48db8b;--woodTop2:#20995f;--woodSide1:#1faa63;--woodSide2:#10653b;--woodSideTop1:#3fd485;--woodSideTop2:#1f8956;--metal1:#f8de92;--metal2:#c6902d}
+  .gg-color-chest.yellow{--wood1:#f1b51f;--wood2:#bf7a12;--woodTop1:#ffd24b;--woodTop2:#e59e18;--woodSide1:#df9b17;--woodSide2:#a76710;--woodSideTop1:#ffd64f;--woodSideTop2:#d48d12;--metal1:#fff0ba;--metal2:#d39b33}
+  .gg-color-chest[disabled]{opacity:.62;filter:saturate(.65);cursor:not-allowed}
+  .gg-chest-close{position:absolute;top:.8rem;right:.8rem;z-index:6;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:.9rem;padding:.55rem .85rem;font-weight:800;backdrop-filter:blur(4px);cursor:pointer}
+  .gg-chest-close:hover{background:rgba(255,255,255,.22)}
+  .gg-chest-result{margin-top:1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:.9rem 1rem;border-radius:1rem;max-width:760px;width:100%;text-align:center;box-shadow:0 10px 22px rgba(0,0,0,.18)}
   @media (max-width:640px){
-    .gg-chest-title{font-size:1.45rem}
-    .gg-chest-list{grid-template-columns:1fr;max-width:320px}
-    .gg-color-chest{min-height:5.8rem;flex-direction:row;justify-content:flex-start;padding:1rem}
-    .gg-color-chest .icon{font-size:2.1rem}
+    .gg-chest-panel{height:min(95vh,820px)}
+    .gg-chest-title{font-size:1.55rem}
+    .gg-chest-sub{font-size:.95rem}
+    .gg-chest-list{grid-template-columns:1fr;max-width:350px;gap:.8rem}
+    .gg-color-chest{min-height:7.4rem;padding:.4rem .6rem .6rem;justify-content:flex-start}
+    .gg-color-chest .chest3d{width:54%;max-width:none;transform:translate(-18%,6px) scale(.9)}
+    .gg-color-chest .label{position:absolute;right:.6rem;bottom:.65rem}
   }
+
 
 </style>
 <div id="gg-celebrate-overlay"><div class="gg-center">🎉</div></div>
 
-<div id="gg-chest-modal" class="gg-chest-overlay" aria-hidden="true">
+<div id="gg-chest-modal" class="gg-chest-overlay" aria-hidden="true" onclick="if(event.target===this) GGX.closeDailyBoxModal()">
   <div class="gg-chest-panel">
-    <button class="gg-chest-close" onclick="GGX.closeDailyBoxModal()">關閉</button>
-    <div class="gg-chest-door-wrap">
-      <div class="gg-door left"></div>
-      <div class="gg-door right"></div>
+    <button type="button" class="gg-chest-close" onclick="event.stopPropagation(); GGX.closeDailyBoxModal()">✕ 關閉</button>
+    <div class="gg-chest-rays"></div>
+    <div class="gg-chest-sparkles"><i>✦</i><i>✨</i><i>✦</i><i>✨</i><i>✦</i><i>✨</i></div>
+    <div class="gg-chest-door-wrap" aria-hidden="true">
+      <div class="gg-door left"><div class="wood"></div><div class="frame"></div><div class="cross"></div><div class="knob"></div></div>
+      <div class="gg-door right"><div class="wood"></div><div class="frame"></div><div class="cross"></div><div class="knob"></div></div>
     </div>
     <div class="gg-chest-content">
       <div class="gg-chest-title">🎁 神秘寶庫已開啟</div>
-      <div class="gg-chest-sub">請選擇一個寶箱（紫色 / 綠色 / 黃色）</div>
+      <div class="gg-chest-sub">請選擇一個寶箱</div>
       <div class="gg-chest-list">
-        <button class="gg-color-chest purple" onclick="GGX.chooseDailyChest('purple')"><span class="icon">🟪🧰</span><span class="label">紫色寶箱</span></button>
-        <button class="gg-color-chest green" onclick="GGX.chooseDailyChest('green')"><span class="icon">🟩🧰</span><span class="label">綠色寶箱</span></button>
-        <button class="gg-color-chest yellow" onclick="GGX.chooseDailyChest('yellow')"><span class="icon">🟨🧰</span><span class="label">黃色寶箱</span></button>
+        <button class="gg-color-chest purple" type="button" onclick="GGX.chooseDailyChest('purple')"><span class="slot"><span class="chest3d"><span class="front-base"></span><span class="front-lid"></span><span class="side-base"></span><span class="side-lid"></span><span class="trim1"></span><span class="trim2"></span><span class="trim3"></span><span class="trim4"></span><span class="trim5"></span><span class="lock"></span><span class="keyhole"></span><span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span><span class="rivet r5"></span><span class="rivet r6"></span><span class="rivet r7"></span><span class="rivet r8"></span><span class="rivet r9"></span><span class="rivet r10"></span><span class="rivet r11"></span><span class="rivet r12"></span></span><span class="shine"></span></span><span class="label">寶箱 1</span></button>
+        <button class="gg-color-chest green" type="button" onclick="GGX.chooseDailyChest('green')"><span class="slot"><span class="chest3d"><span class="front-base"></span><span class="front-lid"></span><span class="side-base"></span><span class="side-lid"></span><span class="trim1"></span><span class="trim2"></span><span class="trim3"></span><span class="trim4"></span><span class="trim5"></span><span class="lock"></span><span class="keyhole"></span><span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span><span class="rivet r5"></span><span class="rivet r6"></span><span class="rivet r7"></span><span class="rivet r8"></span><span class="rivet r9"></span><span class="rivet r10"></span><span class="rivet r11"></span><span class="rivet r12"></span></span><span class="shine"></span></span><span class="label">寶箱 2</span></button>
+        <button class="gg-color-chest yellow" type="button" onclick="GGX.chooseDailyChest('yellow')"><span class="slot"><span class="chest3d"><span class="front-base"></span><span class="front-lid"></span><span class="side-base"></span><span class="side-lid"></span><span class="trim1"></span><span class="trim2"></span><span class="trim3"></span><span class="trim4"></span><span class="trim5"></span><span class="lock"></span><span class="keyhole"></span><span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span><span class="rivet r5"></span><span class="rivet r6"></span><span class="rivet r7"></span><span class="rivet r8"></span><span class="rivet r9"></span><span class="rivet r10"></span><span class="rivet r11"></span><span class="rivet r12"></span></span><span class="shine"></span></span><span class="label">寶箱 3</span></button>
       </div>
       <div id="gg-chest-result" class="gg-chest-result hidden"></div>
     </div>
@@ -3488,12 +3541,15 @@ window.showParkSelect = function () {
   GGX.closeDailyBoxModal = function(){
     const modal = $('gg-chest-modal');
     if(!modal) return;
+    clearTimeout(GGX._dailyBoxStartTimer);
     clearTimeout(GGX._dailyBoxOpeningTimer);
-    modal.classList.remove('show','opening','ready');
+    modal.classList.remove('opening','ready');
     modal.setAttribute('aria-hidden','true');
     const result = $('gg-chest-result');
     if(result){ result.classList.add('hidden'); result.textContent=''; }
     qa('.gg-color-chest', modal).forEach(b=>b.disabled=false);
+    // allow close animation frame then fully hide
+    requestAnimationFrame(()=>modal.classList.remove('show'));
   };
 
   GGX.openDailyBox = function(){
@@ -3519,8 +3575,9 @@ window.showParkSelect = function () {
       modal.classList.remove('opening');
       requestAnimationFrame(()=>{
         modal.classList.add('opening');
-        clearTimeout(GGX._dailyBoxOpeningTimer);
-        GGX._dailyBoxOpeningTimer = setTimeout(()=>modal.classList.add('ready'), 980);
+        clearTimeout(GGX._dailyBoxStartTimer);
+      clearTimeout(GGX._dailyBoxOpeningTimer);
+        GGX._dailyBoxOpeningTimer = setTimeout(()=>modal.classList.add('ready'), 1080);
       });
     });
   };
@@ -3555,7 +3612,7 @@ window.showParkSelect = function () {
 
     const result = $('gg-chest-result');
     if(result){
-      result.textContent = `🎉 ${color==='purple'?'紫色':color==='green'?'綠色':'黃色'}寶箱獎勵：${r.label}`;
+      result.textContent = `🎉 你獲得獎勵：${r.label}`;
       result.classList.remove('hidden');
     }
     qa('.gg-color-chest', $('gg-chest-modal')).forEach(b=>b.disabled=true);
@@ -3698,6 +3755,7 @@ window.showParkSelect = function () {
     render();
   };
   GGX.closeParkQuiz = ()=> $('gg-park-modal')?.classList.remove('show');
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ GGX.closeDailyBoxModal(); } });
 
   function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
