@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0141)https://c0d4b1da207xft9r.canvacode.com/codelet/AAEAEGMwZDRiMWRhMjA3eGZ0OXIAAAAAAZwdajBZVMC45k7G1kJuJorB45yx_0_j5vEgUdRcREES9t4VFs4/index.html -->
 <html lang="zh-TW" class="h-full" style="font-size: 16px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Grandpa GO</title>
@@ -12,7 +13,7 @@
 <script src="leaflet.js"></script>
 
 <link rel="stylesheet" href="Control.Geocoder.css">
-< src="Control.Geocoder.js"></>
+<script src="Control.Geocoder.js"></script>
   <style>
     html, body {
       height: 100%;
@@ -491,16 +492,13 @@
         <h1 id="app-title" class="text-elder-lg font-bold">Grandpa GO</h1>
         <p class="text-lg opacity-90">歡迎 <span id="user-name">用戶</span></p>
        </div>
-      </div> <div class="flex items-center gap-3"><button id="gg-header-box-btn" onclick="GGX.openDailyBox()" class="text-4xl hover:opacity-80 transition-opacity" aria-label="每日神秘箱">🧰</button><button onclick="showPage(&#39;settings&#39;)" class="text-4xl hover:opacity-80 transition-opacity"> ⚙️ </button></div>
+      </div> <button onclick="showPage(&#39;settings&#39;)" class="text-4xl hover:opacity-80 transition-opacity"> ⚙️ </button>
      </div>
     </header>
     <div class="bg-gradient-to-b from-amber-100 to-green-100 p-6">
      <div class="bg-white rounded-3xl shadow-xl p-6">
       <div class="text-center">
-       <div class="flex items-start justify-between gap-3 mb-4">
-        <h2 class="text-elder-lg font-bold text-green-700" style="margin:0;">🌱 我的菜苗</h2>
-        <div id="gg-seed-weather-chip" class="hidden rounded-xl px-3 py-2 text-lg font-bold shadow-lg" style="background:linear-gradient(135deg,#e0f2fe,#dcfce7); color:#065f46; white-space:nowrap;">☀️ 晴天</div>
-       </div>
+       <h2 class="text-elder-lg font-bold text-green-700 mb-4">🌱 我的菜苗</h2>
        <div id="seedling-display" class="text-9xl my-6 animate-float">
         🌱
        </div>
@@ -1117,8 +1115,8 @@
     <p id="toast-message" class="text-elder font-medium">通知訊息</p>
    </div>
   </div>
-  <meta name="viewport" content="width=device-width, user-scalable=no">
-  <>
+  
+  <script>
 
 /* Grandpa GO - Clean Fix Pack (v3)
    - 修復頁底顯示程式碼：移除破損/重複腳本，集中為單一腳本
@@ -3120,11 +3118,11 @@ window.showParkSelect = function () {
     }
   };
 
-</>
+</script>
 
   <!-- Global medication quick access (works on any page) -->
   <div id="overlay-backdrop" class="hidden fixed inset-0 bg-black/50 z-40" onclick="closeMedicationOverlay()"></div>
-<>
+<script>
   // Per-page copyright footer (non-fixed) + auto color by page theme
   document.addEventListener('DOMContentLoaded', () => {
     const footerColorByPage = {
@@ -3180,118 +3178,32 @@ window.showParkSelect = function () {
   .gg-qopt{display:block;width:100%;text-align:left;margin:.5rem 0;padding:.8rem;border:2px solid #ddd;border-radius:.75rem;background:#fff}
   .gg-qopt.correct{border-color:#16a34a;background:#f0fdf4}
   .gg-qopt.wrong{border-color:#dc2626;background:#fef2f2}
-
-  #gg-header-box-btn[disabled]{opacity:.55;pointer-events:none}
-  .gg-chest-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,226,138,.16),rgba(0,0,0,.84) 55%),rgba(0,0,0,.82);backdrop-filter:blur(2px);z-index:10000;display:none;align-items:center;justify-content:center;padding:.6rem}
-  .gg-chest-overlay.show{display:flex;animation:ggChestFade .28s ease}
-  @keyframes ggChestFade{from{opacity:0}to{opacity:1}}
-  .gg-chest-panel{width:min(98vw,1100px);height:min(95vh,760px);background:radial-gradient(circle at 50% 20%,#2d2348 0%,#161328 45%,#090b14 100%);border-radius:1.4rem;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.62), inset 0 0 0 1px rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.08)}
-  .gg-chest-panel:before,.gg-chest-panel:after{content:'';position:absolute;inset:auto;width:46vmin;height:46vmin;border-radius:999px;filter:blur(35px);opacity:.22;pointer-events:none}
-  .gg-chest-panel:before{left:-8%;top:-10%;background:#8b5cf6}
-  .gg-chest-panel:after{right:-8%;bottom:-18%;background:#22c55e}
-  .gg-chest-door-wrap{position:absolute;inset:0;display:flex;z-index:3;pointer-events:none;perspective:1200px}
-  .gg-door{width:50%;height:100%;position:relative;transition:transform 1s cubic-bezier(.12,.82,.18,1),filter .4s ease;transform-origin:center}
-  .gg-door.left{transform-origin:left center}
-  .gg-door.right{transform-origin:right center}
-  .gg-door .wood{position:absolute;inset:0;background:linear-gradient(180deg,#6b3d1c 0%,#5a3216 34%,#48270f 100%)}
-  .gg-door .wood:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 10px,rgba(0,0,0,.05) 10px 20px)}
-  .gg-door .frame{position:absolute;inset:2.3vmin;border:1.2vmin solid #c99432;border-radius:1rem;box-shadow:inset 0 0 0 2px rgba(255,233,170,.25)}
-  .gg-door .cross{position:absolute;left:50%;top:50%;width:80%;height:80%;transform:translate(-50%,-50%)}
-  .gg-door .cross:before,.gg-door .cross:after{content:'';position:absolute;background:#d5a23f;opacity:.92}
-  .gg-door .cross:before{left:50%;top:0;transform:translateX(-50%);width:1vmin;height:100%}
-  .gg-door .cross:after{top:50%;left:0;transform:translateY(-50%);height:1vmin;width:100%}
-  .gg-door .knob{position:absolute;top:50%;width:1.2rem;height:1.2rem;border-radius:999px;background:radial-gradient(circle at 35% 35%,#fff7c7,#d59a2f 55%,#9f6a19);box-shadow:0 0 0 2px rgba(0,0,0,.16),0 0 18px rgba(255,191,71,.25)}
-  .gg-door.left .knob{right:1rem;transform:translateY(-50%)}
-  .gg-door.right .knob{left:1rem;transform:translateY(-50%)}
-  .gg-chest-overlay.opening .gg-door.left{transform:translateX(-104%) rotateY(20deg);filter:brightness(.9)}
-  .gg-chest-overlay.opening .gg-door.right{transform:translateX(104%) rotateY(-20deg);filter:brightness(.9)}
-  .gg-chest-rays{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s ease .35s}
-  .gg-chest-rays:before{content:'';position:absolute;left:50%;top:50%;width:120vmax;height:120vmax;transform:translate(-50%,-50%) rotate(0deg);background:conic-gradient(from 0deg,rgba(255,255,255,0) 0 8deg,rgba(255,215,96,.09) 8deg 16deg,rgba(255,255,255,0) 16deg 28deg,rgba(147,51,234,.08) 28deg 34deg,rgba(255,255,255,0) 34deg 45deg);animation:ggRaySpin 18s linear infinite}
-  .gg-chest-rays:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,214,120,.18),rgba(255,255,255,0) 58%)}
-  @keyframes ggRaySpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-  .gg-chest-overlay.opening .gg-chest-rays,.gg-chest-overlay.ready .gg-chest-rays{opacity:1}
-  .gg-chest-sparkles{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .4s ease .55s}
-  .gg-chest-sparkles i{position:absolute;font-style:normal;color:#fde68a;filter:drop-shadow(0 0 8px rgba(253,230,138,.45));animation:ggFloatSpark 2.6s ease-in-out infinite}
-  .gg-chest-sparkles i:nth-child(1){left:12%;top:22%;font-size:1.2rem;animation-delay:.1s}
-  .gg-chest-sparkles i:nth-child(2){left:84%;top:18%;font-size:1.5rem;animation-delay:.5s}
-  .gg-chest-sparkles i:nth-child(3){left:20%;top:72%;font-size:1rem;animation-delay:.9s}
-  .gg-chest-sparkles i:nth-child(4){left:74%;top:76%;font-size:1.35rem;animation-delay:1.2s}
-  .gg-chest-sparkles i:nth-child(5){left:48%;top:14%;font-size:1.1rem;animation-delay:1.6s}
-  .gg-chest-sparkles i:nth-child(6){left:51%;top:81%;font-size:1.3rem;animation-delay:2s}
-  @keyframes ggFloatSpark{0%,100%{transform:translateY(0) scale(1);opacity:.55}50%{transform:translateY(-8px) scale(1.12);opacity:1}}
-  .gg-chest-overlay.opening .gg-chest-sparkles,.gg-chest-overlay.ready .gg-chest-sparkles{opacity:1}
-  .gg-chest-content{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1.2rem;opacity:0;transition:opacity .45s ease .7s}
-  .gg-chest-overlay.opening .gg-chest-content,.gg-chest-overlay.ready .gg-chest-content{opacity:1}
-  .gg-chest-title{color:#fff;font-weight:900;font-size:2.15rem;letter-spacing:.02em;text-align:center;text-shadow:0 6px 24px rgba(0,0,0,.48)}
-  .gg-chest-sub{color:#d6dcf3;margin-top:.35rem;font-size:1rem;text-align:center}
-  .gg-chest-list{margin-top:1.1rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;width:100%;max-width:860px}
-  .gg-color-chest{position:relative;border:none;border-radius:1.1rem;min-height:12.2rem;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));box-shadow:0 18px 35px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.08);display:flex;align-items:flex-end;justify-content:center;padding:.7rem .7rem .85rem;cursor:pointer;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;overflow:hidden}
-  .gg-color-chest:hover{transform:translateY(-3px) scale(1.015);filter:brightness(1.05);box-shadow:0 24px 42px rgba(0,0,0,.35),0 0 30px rgba(255,215,96,.08)}
-  .gg-color-chest:active{transform:translateY(-1px) scale(.985)}
-  .gg-color-chest .label{position:relative;z-index:2;font-size:1rem;font-weight:800;color:#f8fafc;background:rgba(15,23,42,.55);padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
-  .gg-color-chest .icon{display:none}
-  .gg-color-chest .slot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:1}
-  .gg-color-chest .chest3d{position:relative;width:80%;max-width:200px;aspect-ratio:1.18/1;transform:translateY(-2px)}
-  .gg-color-chest .chest3d .front-base{position:absolute;left:7%;right:18%;bottom:8%;height:46%;border-radius:0 0 12px 12px;background:linear-gradient(180deg,var(--wood1),var(--wood2));box-shadow:inset 0 -8px 12px rgba(0,0,0,.18)}
-  .gg-color-chest .chest3d .front-lid{position:absolute;left:7%;right:18%;top:7%;height:34%;border-radius:44px 44px 14px 14px / 34px 34px 12px 12px;background:linear-gradient(180deg,var(--woodTop1),var(--woodTop2));box-shadow:inset 0 -8px 12px rgba(0,0,0,.14)}
-  .gg-color-chest .chest3d .side-base{position:absolute;right:6%;bottom:11%;width:13%;height:41%;transform:skewY(-18deg);border-radius:0 10px 10px 0;background:linear-gradient(180deg,var(--woodSide1),var(--woodSide2))}
-  .gg-color-chest .chest3d .side-lid{position:absolute;right:6%;top:12%;width:13%;height:28%;transform:skewY(-18deg);border-radius:0 20px 10px 0;background:linear-gradient(180deg,var(--woodSideTop1),var(--woodSideTop2))}
-  .gg-color-chest .chest3d .trim1,.gg-color-chest .chest3d .trim2,.gg-color-chest .chest3d .trim3,.gg-color-chest .chest3d .trim4,.gg-color-chest .chest3d .trim5{position:absolute;background:linear-gradient(180deg,var(--metal1),var(--metal2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
-  .gg-color-chest .chest3d .trim1{left:5%;right:17%;top:38%;height:9%;border-radius:7px}
-  .gg-color-chest .chest3d .trim2{left:16%;top:6%;width:8%;height:80%;border-radius:7px}
-  .gg-color-chest .chest3d .trim3{left:41%;top:4%;width:8%;height:82%;border-radius:7px}
-  .gg-color-chest .chest3d .trim4{left:66%;top:4%;width:8%;height:82%;border-radius:7px}
-  .gg-color-chest .chest3d .trim5{right:5%;top:9%;width:10%;height:74%;transform:skewY(-18deg);border-radius:0 8px 8px 0}
-  .gg-color-chest .chest3d .lock{position:absolute;left:39%;top:44%;width:20%;height:17%;background:linear-gradient(180deg,var(--metal1),var(--metal2));clip-path:polygon(10% 10%,90% 10%,85% 85%,50% 100%,15% 85%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
-  .gg-color-chest .chest3d .keyhole{position:absolute;left:48%;top:49%;width:4%;height:5%;background:#3a2a10;border-radius:2px}
-  .gg-color-chest .chest3d .rivet{position:absolute;width:4.6%;aspect-ratio:1;border-radius:999px;background:radial-gradient(circle at 35% 30%,#fff9d0,var(--metal1) 38%,var(--metal2) 75%);box-shadow:0 0 0 1px rgba(0,0,0,.18)}
-  .gg-color-chest .chest3d .r1{left:14%;top:13%}.gg-color-chest .chest3d .r2{left:39%;top:11%}.gg-color-chest .chest3d .r3{left:64%;top:11%}.gg-color-chest .chest3d .r4{left:12%;top:40%}.gg-color-chest .chest3d .r5{left:36%;top:40%}.gg-color-chest .chest3d .r6{left:61%;top:40%}.gg-color-chest .chest3d .r7{left:13%;top:74%}.gg-color-chest .chest3d .r8{left:37%;top:74%}.gg-color-chest .chest3d .r9{left:61%;top:74%}.gg-color-chest .chest3d .r10{left:80%;top:17%}.gg-color-chest .chest3d .r11{left:80%;top:44%}.gg-color-chest .chest3d .r12{left:80%;top:70%}
-  .gg-color-chest .shine{position:absolute;inset:-35% 45% auto -5%;height:80%;background:linear-gradient(110deg,rgba(255,255,255,.0),rgba(255,255,255,.18),rgba(255,255,255,.0));transform:rotate(2deg);pointer-events:none}
-  .gg-color-chest:hover .shine{animation:ggChestShine .9s ease}
-  @keyframes ggChestShine{from{transform:translateX(-40%) rotate(2deg)}to{transform:translateX(120%) rotate(2deg)}}
-  .gg-color-chest.purple{--wood1:#7f4ad7;--wood2:#512596;--woodTop1:#9f67ff;--woodTop2:#6b31c8;--woodSide1:#6e39c7;--woodSide2:#431f83;--woodSideTop1:#9866f4;--woodSideTop2:#622ab8;--metal1:#f6d474;--metal2:#bd7f24}
-  .gg-color-chest.green{--wood1:#2bbf6f;--wood2:#157d47;--woodTop1:#48db8b;--woodTop2:#20995f;--woodSide1:#1faa63;--woodSide2:#10653b;--woodSideTop1:#3fd485;--woodSideTop2:#1f8956;--metal1:#f8de92;--metal2:#c6902d}
-  .gg-color-chest.yellow{--wood1:#f1b51f;--wood2:#bf7a12;--woodTop1:#ffd24b;--woodTop2:#e59e18;--woodSide1:#df9b17;--woodSide2:#a76710;--woodSideTop1:#ffd64f;--woodSideTop2:#d48d12;--metal1:#fff0ba;--metal2:#d39b33}
-  .gg-color-chest[disabled]{opacity:.62;filter:saturate(.65);cursor:not-allowed}
-  .gg-chest-close{position:absolute;top:.8rem;right:.8rem;z-index:6;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:.9rem;padding:.55rem .85rem;font-weight:800;backdrop-filter:blur(4px);cursor:pointer}
-  .gg-chest-close:hover{background:rgba(255,255,255,.22)}
-  .gg-chest-result{margin-top:1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;padding:.9rem 1rem;border-radius:1rem;max-width:760px;width:100%;text-align:center;box-shadow:0 10px 22px rgba(0,0,0,.18)}
-  @media (max-width:640px){
-    .gg-chest-panel{height:min(95vh,820px)}
-    .gg-chest-title{font-size:1.55rem}
-    .gg-chest-sub{font-size:.95rem}
-    .gg-chest-list{grid-template-columns:1fr;max-width:350px;gap:.8rem}
-    .gg-color-chest{min-height:7.4rem;padding:.4rem .6rem .6rem;justify-content:flex-start}
-    .gg-color-chest .chest3d{width:54%;max-width:none;transform:translate(-18%,6px) scale(.9)}
-    .gg-color-chest .label{position:absolute;right:.6rem;bottom:.65rem}
-  }
-
-
+  .gg-weather-chip{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.95);border:2px solid #bfdbfe;font-weight:700;font-size:1rem;box-shadow:0 4px 10px rgba(0,0,0,.08)}
+  .gg-seed-weather-wrap{position:absolute;top:1rem;right:1rem;z-index:2}
+  .gg-header-chest-btn{width:3rem;height:3rem;border-radius:999px;border:none;background:rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;font-size:1.7rem;color:#fff}
+  .gg-header-chest-btn:active{transform:scale(.96)}
+  #gg-box-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:none;align-items:center;justify-content:center;padding:.5rem}
+  #gg-box-modal.show{display:flex}
+  #gg-box-modal .gg-box-stage{position:relative;width:min(98vw,1200px);height:min(95vh,860px);background:linear-gradient(180deg,#0b1024,#111827);border-radius:1.25rem;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .gg-door{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(135deg,#5b3a1e,#8b5e34);display:flex;align-items:center;justify-content:center;font-size:4rem;transition:transform 900ms cubic-bezier(.2,.8,.2,1)}
+  .gg-door.left{left:0;border-right:2px solid rgba(255,255,255,.2)}
+  .gg-door.right{right:0;border-left:2px solid rgba(255,255,255,.2)}
+  #gg-box-modal.opened .gg-door.left{transform:translateX(-104%)}
+  #gg-box-modal.opened .gg-door.right{transform:translateX(104%)}
+  .gg-door-glow{position:absolute;inset:0;background:radial-gradient(circle at center,#fde68a 0%,rgba(253,230,138,.4) 25%,rgba(255,255,255,0) 60%);opacity:0;transition:opacity .5s ease}
+  #gg-box-modal.opened .gg-door-glow{opacity:1}
+  .gg-box-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;opacity:0;transform:scale(.96);transition:all .45s ease .65s;padding:1rem}
+  #gg-box-modal.opened .gg-box-content{opacity:1;transform:scale(1)}
+  .gg-chest-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;width:min(92%,860px)}
+  .gg-chest-choice{border:none;border-radius:1rem;padding:1rem;min-height:12rem;color:#fff;font-weight:700;box-shadow:0 10px 22px rgba(0,0,0,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;font-size:1.15rem}
+  .gg-chest-choice .icon{font-size:4rem}
+  .gg-chest-choice.purple{background:linear-gradient(135deg,#7c3aed,#c084fc);border:3px solid #e9d5ff;box-shadow:0 0 0 3px rgba(233,213,255,.2),0 12px 30px rgba(76,29,149,.35)}
+  .gg-chest-choice.green{background:linear-gradient(135deg,#16a34a,#86efac);color:#073b1f;border:3px solid #bbf7d0;box-shadow:0 0 0 3px rgba(187,247,208,.2),0 12px 30px rgba(6,95,70,.25)}
+  .gg-chest-choice.yellow{background:linear-gradient(135deg,#ca8a04,#fde047);color:#4a3000;border:3px solid #fef08a;box-shadow:0 0 0 3px rgba(254,240,138,.2),0 12px 30px rgba(161,98,7,.25)}
+  .gg-chest-choice:active{transform:scale(.97)}
+  @media (max-width:700px){.gg-chest-row{grid-template-columns:1fr;max-width:420px}.gg-chest-choice{min-height:6.8rem;flex-direction:row;justify-content:flex-start;padding:1rem 1.1rem}.gg-chest-choice .icon{font-size:2.4rem}}
 </style>
 <div id="gg-celebrate-overlay"><div class="gg-center">🎉</div></div>
-
-<div id="gg-chest-modal" class="gg-chest-overlay" aria-hidden="true" onclick="if(event.target===this) GGX.closeDailyBoxModal()">
-  <div class="gg-chest-panel">
-    <button type="button" class="gg-chest-close" onclick="event.stopPropagation(); GGX.closeDailyBoxModal()">✕ 關閉</button>
-    <div class="gg-chest-rays"></div>
-    <div class="gg-chest-sparkles"><i>✦</i><i>✨</i><i>✦</i><i>✨</i><i>✦</i><i>✨</i></div>
-    <div class="gg-chest-door-wrap" aria-hidden="true">
-      <div class="gg-door left"><div class="wood"></div><div class="frame"></div><div class="cross"></div><div class="knob"></div></div>
-      <div class="gg-door right"><div class="wood"></div><div class="frame"></div><div class="cross"></div><div class="knob"></div></div>
-    </div>
-    <div class="gg-chest-content">
-      <div class="gg-chest-title">🎁 神秘寶庫已開啟</div>
-      <div class="gg-chest-sub">請選擇一個寶箱</div>
-      <div class="gg-chest-list">
-        <button class="gg-color-chest purple" type="button" onclick="GGX.chooseDailyChest('purple')"><span class="slot"><span class="chest3d"><span class="front-base"></span><span class="front-lid"></span><span class="side-base"></span><span class="side-lid"></span><span class="trim1"></span><span class="trim2"></span><span class="trim3"></span><span class="trim4"></span><span class="trim5"></span><span class="lock"></span><span class="keyhole"></span><span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span><span class="rivet r5"></span><span class="rivet r6"></span><span class="rivet r7"></span><span class="rivet r8"></span><span class="rivet r9"></span><span class="rivet r10"></span><span class="rivet r11"></span><span class="rivet r12"></span></span><span class="shine"></span></span><span class="label">寶箱 1</span></button>
-        <button class="gg-color-chest green" type="button" onclick="GGX.chooseDailyChest('green')"><span class="slot"><span class="chest3d"><span class="front-base"></span><span class="front-lid"></span><span class="side-base"></span><span class="side-lid"></span><span class="trim1"></span><span class="trim2"></span><span class="trim3"></span><span class="trim4"></span><span class="trim5"></span><span class="lock"></span><span class="keyhole"></span><span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span><span class="rivet r5"></span><span class="rivet r6"></span><span class="rivet r7"></span><span class="rivet r8"></span><span class="rivet r9"></span><span class="rivet r10"></span><span class="rivet r11"></span><span class="rivet r12"></span></span><span class="shine"></span></span><span class="label">寶箱 2</span></button>
-        <button class="gg-color-chest yellow" type="button" onclick="GGX.chooseDailyChest('yellow')"><span class="slot"><span class="chest3d"><span class="front-base"></span><span class="front-lid"></span><span class="side-base"></span><span class="side-lid"></span><span class="trim1"></span><span class="trim2"></span><span class="trim3"></span><span class="trim4"></span><span class="trim5"></span><span class="lock"></span><span class="keyhole"></span><span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span><span class="rivet r5"></span><span class="rivet r6"></span><span class="rivet r7"></span><span class="rivet r8"></span><span class="rivet r9"></span><span class="rivet r10"></span><span class="rivet r11"></span><span class="rivet r12"></span></span><span class="shine"></span></span><span class="label">寶箱 3</span></button>
-      </div>
-      <div id="gg-chest-result" class="gg-chest-result hidden"></div>
-    </div>
-  </div>
-</div>
-
 <div id="gg-park-modal" class="gg-modal"><div class="panel">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
     <h3 style="font-size:1.25rem;font-weight:700">🧩 每日公園挑戰（3題）</h3>
@@ -3299,6 +3211,25 @@ window.showParkSelect = function () {
   </div>
   <div id="gg-park-content" style="margin-top:.5rem"></div>
 </div></div>
+<div id="gg-box-modal" aria-hidden="true">
+  <div class="gg-box-stage">
+    <div class="gg-door-glow"></div>
+    <div class="gg-door left">🚪</div>
+    <div class="gg-door right">🚪</div>
+    <div class="gg-box-content">
+      <div style="color:#fff;text-align:center">
+        <div style="font-size:2rem;font-weight:800">🎁 每日神秘箱</div>
+        <div id="gg-box-subtitle" style="opacity:.9">選一個寶箱打開</div>
+      </div>
+      <div class="gg-chest-row">
+        <button class="gg-chest-choice purple" onclick="GGX.claimDailyBoxByColor('purple')"><div class="icon">🧰</div><div>紫色寶箱</div><div style="font-size:.9rem;opacity:.9">稀有獎勵偏高</div></button>
+        <button class="gg-chest-choice green" onclick="GGX.claimDailyBoxByColor('green')"><div class="icon">🧰</div><div>綠色寶箱</div><div style="font-size:.9rem;opacity:.85">穩定成長</div></button>
+        <button class="gg-chest-choice yellow" onclick="GGX.claimDailyBoxByColor('yellow')"><div class="icon">🧰</div><div>黃色寶箱</div><div style="font-size:.9rem;opacity:.85">驚喜加成</div></button>
+      </div>
+      <button class="gg-btn" style="background:#e5e7eb" onclick="GGX.closeDailyBoxModal()">關閉</button>
+    </div>
+  </div>
+</div>
 <script id="creative-v1-script">
 (function(){
   const GGX = window.GGX = window.GGX || {};
@@ -3491,138 +3422,99 @@ window.showParkSelect = function () {
     return streak;
   }
 
-  
   function renderCreativeCards(){
-    const u = loadUser(); if(!u) return;
-    ensureMeta(u);
-    const w = u.creative.weather?.type || 'sun';
-    const weatherLabel = {sun:'☀️ 晴天', rain:'🌧️ 下雨', rainbow:'🌈 彩虹日', pest:'🐛 害蟲日'}[w] || '☀️ 晴天';
-
-    // 將今日天氣移到「我的菜苗」框框右上角
-    const chip = $('gg-seed-weather-chip');
-    if(chip){
-      chip.textContent = weatherLabel;
-      chip.classList.remove('hidden');
-      if(w==='pest'){
-        chip.style.background = 'linear-gradient(135deg,#fee2e2,#fde68a)';
-        chip.style.color = '#991b1b';
-      }else if(w==='rain'){
-        chip.style.background = 'linear-gradient(135deg,#dbeafe,#e0f2fe)';
-        chip.style.color = '#1e3a8a';
-      }else if(w==='rainbow'){
-        chip.style.background = 'linear-gradient(135deg,#fce7f3,#e0e7ff,#dcfce7)';
-        chip.style.color = '#4c1d95';
-      }else{
-        chip.style.background = 'linear-gradient(135deg,#e0f2fe,#dcfce7)';
-        chip.style.color = '#065f46';
-      }
-      chip.title = (w==='pest'?'今天記得完成一個遊戲，趕走害蟲！':'今日天氣效果');
-    }
-
-    // 每日神秘箱移到設定按鈕左邊（header）
-    const boxBtn = $('gg-header-box-btn');
-    if(boxBtn){
-      const db = u.creative.dailyBox || {};
-      const opened = db.date===TODAY() && !!db.opened;
-      boxBtn.textContent = '🧰';
-      boxBtn.disabled = opened;
-      boxBtn.title = opened ? '每日神秘箱（今天已開啟）' : '每日神秘箱';
-      boxBtn.style.opacity = opened ? '.55' : '1';
-    }
-
-    // 刪除創意區塊中的成就牆 / 今日小夥伴 / 舊版神秘箱卡片
-    let host = $('gg-creative-host');
-    if(host){ host.innerHTML = ''; host.style.display = 'none'; }
+    injectHeaderChestButton();
+    renderSeedWeatherChip();
+    const host = $('gg-creative-host');
+    if(host){ host.innerHTML=''; host.style.display='none'; }
   }
 
-
-  
-  GGX._dailyBoxOpeningTimer = null;
-  GGX.closeDailyBoxModal = function(){
-    const modal = $('gg-chest-modal');
-    if(!modal) return;
-    clearTimeout(GGX._dailyBoxStartTimer);
-    clearTimeout(GGX._dailyBoxOpeningTimer);
-    modal.classList.remove('opening','ready');
-    modal.setAttribute('aria-hidden','true');
-    const result = $('gg-chest-result');
-    if(result){ result.classList.add('hidden'); result.textContent=''; }
-    qa('.gg-color-chest', modal).forEach(b=>b.disabled=false);
-    // allow close animation frame then fully hide
-    requestAnimationFrame(()=>modal.classList.remove('show'));
-  };
+  function weatherLabelText(){
+    const u=loadUser(); if(!u) return '☀️ 晴天'; ensureMeta(u);
+    const w=u.creative.weather?.type||'sun';
+    return ({sun:'☀️ 晴天', rain:'🌧️ 下雨', rainbow:'🌈 彩虹日', pest:'🐛 害蟲日'})[w]||'☀️ 晴天';
+  }
+  function renderSeedWeatherChip(){
+    const main=$('main-page'); if(!main) return;
+    const seedCardTitle = Array.from(main.querySelectorAll('h2')).find(el=>el.textContent.includes('我的菜苗'));
+    if(!seedCardTitle) return;
+    const card = seedCardTitle.closest('.bg-white.rounded-3xl') || seedCardTitle.closest('.bg-white');
+    if(!card) return;
+    if(getComputedStyle(card).position==='static') card.style.position='relative';
+    let wrap = card.querySelector('.gg-seed-weather-wrap');
+    if(!wrap){ wrap=document.createElement('div'); wrap.className='gg-seed-weather-wrap'; card.appendChild(wrap); }
+    wrap.innerHTML = `<div class="gg-weather-chip" title="今日天氣"><span>${weatherLabelText().split(' ')[0]}</span><span>${weatherLabelText().split(' ')[1]||''}</span></div>`;
+  }
+  function injectHeaderChestButton(){
+    const header = $('main-page')?.querySelector('header .flex.items-center.justify-between > div:last-child, header .flex.items-center.justify-between');
+    const root = $('main-page')?.querySelector('header .flex.items-center.justify-between');
+    if(!root) return;
+    let right = root.querySelector('.gg-header-right');
+    const settingsBtn = root.querySelector("button[onclick*="settings"]");
+    if(!settingsBtn) return;
+    if(!right){
+      right = document.createElement('div');
+      right.className='gg-header-right';
+      right.style.display='flex'; right.style.alignItems='center'; right.style.gap='.5rem';
+      settingsBtn.parentNode.insertBefore(right, settingsBtn);
+      right.appendChild(settingsBtn);
+    }
+    let chest = root.querySelector('#gg-header-chest');
+    if(!chest){
+      chest = document.createElement('button');
+      chest.id='gg-header-chest';
+      chest.className='gg-header-chest-btn';
+      chest.type='button';
+      chest.title='每日神秘箱';
+      chest.setAttribute('aria-label','每日神秘箱');
+      chest.textContent='🧰';
+      chest.onclick=()=>GGX.openDailyBox();
+      right.insertBefore(chest, settingsBtn);
+    }
+    const u=loadUser(); if(u){ ensureMeta(u); chest.style.opacity=(u.creative.dailyBox?.opened?'.65':'1'); }
+  }
 
   GGX.openDailyBox = function(){
     const u = ensureMeta(loadUser()); if(!u) return;
     setDailyWeather(u);
     const db = u.creative.dailyBox;
-    if(db.date===TODAY() && db.opened){
-      toast('🎁 今天已開過寶箱');
-      saveUser(u);
-      renderCreativeCards();
-      return;
-    }
-    const modal = $('gg-chest-modal');
-    if(!modal) return;
-    const result = $('gg-chest-result');
-    if(result){ result.classList.add('hidden'); result.textContent=''; }
-    qa('.gg-color-chest', modal).forEach(b=>b.disabled=false);
+    if(db.date===TODAY() && db.opened){ toast('🎁 今天已開過寶箱'); saveUser(u); renderCreativeCards(); return; }
+    const modal=$('gg-box-modal'); if(!modal) return;
     modal.classList.add('show');
-    modal.classList.remove('ready');
-    modal.setAttribute('aria-hidden','false');
-    // 先顯示門，再打開
-    requestAnimationFrame(()=>{
-      modal.classList.remove('opening');
-      requestAnimationFrame(()=>{
-        modal.classList.add('opening');
-        clearTimeout(GGX._dailyBoxStartTimer);
-      clearTimeout(GGX._dailyBoxOpeningTimer);
-        GGX._dailyBoxOpeningTimer = setTimeout(()=>modal.classList.add('ready'), 1080);
-      });
-    });
+    modal.classList.remove('opened');
+    const sub=$('gg-box-subtitle'); if(sub) sub.textContent='大門開啟中…';
+    setTimeout(()=>{ modal.classList.add('opened'); if(sub) sub.textContent='選一個寶箱打開'; }, 80);
   };
-
-  GGX.chooseDailyChest = function(color){
+  GGX.closeDailyBoxModal = function(){ $('gg-box-modal')?.classList.remove('show','opened'); };
+  GGX.claimDailyBoxByColor = function(color){
     const u = ensureMeta(loadUser()); if(!u) return;
     setDailyWeather(u);
-    const db = u.creative.dailyBox;
-    if(db.date===TODAY() && db.opened){ toast('🎁 今天已開過寶箱'); renderCreativeCards(); return; }
-
-    const pools = {
-      purple: [
-        {label:'直接收穫衝刺 +35%', fn:()=>grow(u,35)},
+    const db=u.creative.dailyBox;
+    if(db.date===TODAY() && db.opened){ toast('🎁 今天已開過寶箱'); saveUser(u); GGX.closeDailyBoxModal(); syncVisuals(); return; }
+    db.date=TODAY(); db.opened=true;
+    const rewardPools={
+      purple:[
         {label:'稀有黃金蔬菜', fn:()=>{u.harvested=u.harvested||[]; u.harvested.push('黃金番茄'); celebrate();}},
-        {label:'雙倍成長卡（本日）', fn:()=>{u.creative.doubleGrowthToday=TODAY();}}
+        {label:'鑽石蔬菜碎片（成長 +20%）', fn:()=>grow(u,20)},
+        {label:'雙倍成長卡（本日）', fn:()=>{u.creative.doubleGrowthToday=TODAY(); toast('✨ 今天額外成長效果啟動');}}
       ],
-      green: [
-        {label:'成長 +10%', fn:()=>grow(u,10)},
-        {label:'成長 +8%', fn:()=>grow(u,8)},
-        {label:'雙倍成長卡（本日）', fn:()=>{u.creative.doubleGrowthToday=TODAY();}}
-      ],
-      yellow: [
+      green:[
         {label:'成長 +5%', fn:()=>grow(u,5)},
-        {label:'成長 +3%', fn:()=>grow(u,3)},
+        {label:'成長 +10%', fn:()=>grow(u,10)},
+        {label:'穩穩長大 +8%', fn:()=>grow(u,8)}
+      ],
+      yellow:[
+        {label:'直接收穫衝刺 +35%', fn:()=>grow(u,35)},
+        {label:'成長 +15%', fn:()=>grow(u,15)},
         {label:'搞笑空箱 😂', fn:()=>{}}
       ]
     };
-    const p = pools[color] || pools.yellow;
-    const r = rand(p);
-    db.date=TODAY(); db.opened=true;
-    r.fn();
-
-    const result = $('gg-chest-result');
-    if(result){
-      result.textContent = `🎉 你獲得獎勵：${r.label}`;
-      result.classList.remove('hidden');
-    }
-    qa('.gg-color-chest', $('gg-chest-modal')).forEach(b=>b.disabled=true);
-
-    toast('🎁 寶箱獎勵：'+r.label);
+    const r = rand(rewardPools[color]||rewardPools.green); r.fn();
     saveUser(u);
+    GGX.closeDailyBoxModal();
+    toast('🎁 '+({purple:'紫色',green:'綠色',yellow:'黃色'}[color]||'寶箱')+'獎勵：'+r.label);
     syncVisuals();
-    renderCreativeCards();
   };
-
 
   function grow(u,delta){
     if(u.creative.doubleGrowthToday===TODAY()) delta*=2;
@@ -3755,7 +3647,6 @@ window.showParkSelect = function () {
     render();
   };
   GGX.closeParkQuiz = ()=> $('gg-park-modal')?.classList.remove('show');
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ GGX.closeDailyBoxModal(); } });
 
   function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
@@ -3792,6 +3683,76 @@ window.showParkSelect = function () {
   document.addEventListener('DOMContentLoaded', ()=>{
     setTimeout(()=>{ try{tick(); syncVisuals();}catch(e){console.error(e);} }, 600);
     setInterval(()=>{ try{tick();}catch(e){} }, 2000);
+  });
+})();
+</script>
+
+
+<script id="gg-user-fix-v2">
+(function(){
+  function textHas(el, kw){
+    return !!el && (el.innerText || el.textContent || '').replace(/\s+/g,' ').includes(kw);
+  }
+  function removeByKeywords(keywords){
+    const all = Array.from(document.querySelectorAll('section,div,button,label,h2,h3,p'));
+    all.forEach(el=>{
+      const txt = (el.innerText || el.textContent || '').trim();
+      if(!txt) return;
+      if(keywords.some(k => txt.includes(k))){
+        // Prefer removing the nearest card-like container to avoid leaving empty shells
+        let target = el.closest('.bg-white.rounded-3xl, .bg-white.rounded-2xl, .gg-card, .rounded-3xl, .rounded-2xl, .p-4, .p-6') || el;
+        // don't accidentally remove main page root / settings root
+        const bad = ['main-page','settings-page','exercise-page'];
+        if(target.id && bad.includes(target.id)) return;
+        // avoid removing header/title if keyword appears in nested toast text later
+        if((target.innerText||'').length > 8000) return;
+        target.remove();
+      }
+    });
+  }
+
+  function removeCompanionAndAchievements(){
+    removeByKeywords(['成就牆','成就','今日小夥伴','小夥伴設定','農場小夥伴']);
+    // Also remove any nav/button leading to achievement/companion if present
+    Array.from(document.querySelectorAll('button,[role="button"],a')).forEach(el=>{
+      const t=(el.innerText||el.textContent||'').trim();
+      if(['成就','小夥伴'].some(k=>t.includes(k))){
+        if(t.length<=20) el.remove();
+      }
+    });
+    // Hide injected creative host if any legacy cards remain
+    const host=document.getElementById('gg-creative-host');
+    if(host){ host.innerHTML=''; host.style.display='none'; }
+  }
+
+  function ensureWeatherChipInSeedCard(){
+    try{
+      if(window.GGX && typeof window.GGX.syncVisuals==='function'){ window.GGX.syncVisuals(); }
+      if(window.renderCreativeCards) window.renderCreativeCards();
+    }catch(e){}
+  }
+
+  function run(){
+    removeCompanionAndAchievements();
+    ensureWeatherChipInSeedCard();
+    // ensure chest button is to the LEFT of settings and uses chest emoji
+    const root = document.querySelector('#main-page header .flex.items-center.justify-between');
+    if(root){
+      const settingsBtn = root.querySelector('button[onclick*="settings"]');
+      const chest = root.querySelector('#gg-header-chest');
+      if(chest){ chest.textContent='🧰'; chest.title='每日神秘箱'; chest.setAttribute('aria-label','每日神秘箱'); }
+      if(settingsBtn && chest && chest.parentNode===settingsBtn.parentNode){
+        if(chest.nextElementSibling !== settingsBtn){
+          settingsBtn.parentNode.insertBefore(chest, settingsBtn);
+        }
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    run();
+    setTimeout(run, 300);
+    setTimeout(run, 1200);
   });
 })();
 </script>
