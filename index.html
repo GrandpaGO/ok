@@ -714,7 +714,7 @@
           <div class="park-card p-4 border-l-4 border-green-500">
             <div class="flex items-start justify-between mb-2">
               <div>
-                <h3 class="text-lg font-bold text-green-700">中壢文化園區</h3>
+                <h3 class="text-lg font-bold text-green-700">中壢藝術園區</h3>
                 <p class="text-base text-gray-600">文化園區</p>
               </div>
               <span class="text-3xl">🌳</span>
@@ -783,7 +783,7 @@
           <div class="park-card p-4 border-l-4 border-green-500">
             <div class="flex items-start justify-between mb-2">
               <div>
-                <h3 class="text-lg font-bold text-green-700">夢想公園</h3>
+                <h3 class="text-lg font-bold text-green-700">夢幻公園</h3>
                 <p class="text-base text-gray-600">社區型公園</p>
               </div>
               <span class="text-3xl">🌳</span>
@@ -3327,7 +3327,17 @@ window.showParkSelect = function () {
     "復興公園":"復興青蔥","元生公園":"元生玉米","文化公園":"文化番茄","常樂公園":"常樂白菜","成功公園":"成功高麗菜","中正公園":"中正南瓜"
   };
   GGX.parkCoords = {
-    "復興公園":[24.972,121.258],"元生公園":[24.968,121.244],"文化公園":[24.955,121.223],"常樂公園":[24.960,121.230],"成功公園":[24.954,121.216],"中正公園":[24.956,121.224]
+    "復興公園":[24.97430737812043,121.24846509148746],
+    "元生公園":[24.974361904463205,121.2530170711643],
+    "常樂公園":[24.97623238419544,121.25073592285267],
+    "成功公園":[24.977787188933398,121.25806282519825],
+    "中正公園":[24.959065130381184,121.22699906567601],
+    "中壢藝術園區":[24.973134345561746,121.2331776775459],
+    "龍岡森林公園":[24.934199843085448,121.23581136752513],
+    "光明公園":[24.963638128535816,121.21605943684051],
+    "夢幻公園":[24.978041418783775,121.26053919991263],
+    "中壢文化園區":[24.973134345561746,121.2331776775459],
+    "夢想公園":[24.978041418783775,121.26053919991263]
   };
 
   function ensureMeta(u){
@@ -3656,7 +3666,7 @@ window.showParkSelect = function () {
       const nameEl = q('h3', card); const parkName = nameEl ? nameEl.textContent.trim() : '公園';
       const btn = document.createElement('button');
       btn.className='gg-btn gg-checkin-btn';
-      btn.textContent='📍 到此打卡';
+      btn.textContent='📍 定位打卡';
       btn.onclick=()=>GGX.parkCheckin(parkName);
       card.appendChild(btn);
 
@@ -3682,7 +3692,21 @@ window.showParkSelect = function () {
     c.checkins = c.checkins || {date:TODAY(), parks:[]};
     if(c.checkins.date!==TODAY()) c.checkins={date:TODAY(), parks:[]};
     if(c.checkins.parks.includes(parkName)){ toast('📍 今天已打卡過這個公園'); saveUser(u); return; }
+
     const rewardName = GGX.parkSeeds[parkName] || (parkName+'限定種子');
+    const coords = GGX.parkCoords[parkName];
+    const allowedDistanceM = 300; // 定位驗證半徑（公尺）
+
+    if(!coords){
+      alert(`目前「${parkName}」尚未設定定位驗證座標，暫時無法打卡。\n請先為此公園補上座標後再使用。`);
+      return;
+    }
+
+    if(!navigator.geolocation){
+      alert('此裝置或瀏覽器不支援定位功能，無法進行公園打卡驗證。');
+      return;
+    }
+
     const success = ()=> {
       c.checkins.parks.push(parkName);
       u.harvested = u.harvested || [];
@@ -3691,16 +3715,39 @@ window.showParkSelect = function () {
       celebrate();
       saveUser(u); syncVisuals();
     };
-    const coords = GGX.parkCoords[parkName];
-    if(navigator.geolocation && coords){
-      navigator.geolocation.getCurrentPosition(pos=>{
-        const d = distM(pos.coords.latitude,pos.coords.longitude,coords[0],coords[1]);
-        if(d <= 800) success();
-        else if(confirm(`偵測到距離約 ${Math.round(d)} 公尺，仍要用體驗模式打卡嗎？`)) success();
-      }, _=>{ if(confirm('無法取得定位，改用體驗模式打卡？')) success(); }, {enableHighAccuracy:true,timeout:6000});
-    } else {
-      if(confirm('此裝置無法定位，改用體驗模式打卡？')) success();
-    }
+
+    toast('📡 正在定位，請稍候…');
+
+    navigator.geolocation.getCurrentPosition((pos)=>{
+      const lat = pos?.coords?.latitude;
+      const lon = pos?.coords?.longitude;
+      const acc = Number(pos?.coords?.accuracy || 9999);
+      const d = distM(lat, lon, coords[0], coords[1]);
+
+      // 定位精度太差時不允許打卡，避免在遠處誤判
+      if(acc > 150){
+        alert(`定位精度不足（約 ±${Math.round(acc)}m），請移動到空曠處後再試一次。`);
+        return;
+      }
+
+      if(d <= allowedDistanceM){
+        success();
+      }else{
+        alert(`你目前距離「${parkName}」約 ${Math.round(d)} 公尺，未進入打卡範圍（${allowedDistanceM} 公尺內）。\n請到達公園附近後再打卡。`);
+      }
+    }, (err)=>{
+      let msg = '無法取得定位，請確認已開啟定位權限。';
+      if(err && typeof err.code !== 'undefined'){
+        if(err.code === 1) msg = '你已拒絕定位權限，請允許定位後再打卡。';
+        else if(err.code === 2) msg = '目前無法取得位置（定位服務不可用），請稍後再試。';
+        else if(err.code === 3) msg = '定位逾時，請到空曠處再試一次。';
+      }
+      alert(msg);
+    }, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    });
   };
 
   GGX.openParkQuiz = function(){
